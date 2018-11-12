@@ -1,0 +1,32 @@
+{
+  "name": "bill-app-models",
+  "version": "1.0.0",
+  "description": "Model Classes for Billing App",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manikumarkv/bill-app-models.git"
+  },
+  "keywords": [],
+  "author": "“Mani <“manikumarkv@gmail.com”>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manikumarkv/bill-app-models/issues"
+  },
+  "homepage": "https://github.com/manikumarkv/bill-app-models#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.6"
+  }
+}
