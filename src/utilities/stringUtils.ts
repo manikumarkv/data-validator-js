@@ -34,7 +34,7 @@ export default class StringUtilities {
    * Checks string is null,undefined or empty.
    * @param str string for which we need to check.
    */
-  public static IsNullOrEmpty(str: string): boolean {
+  public static IsNullOrEmpty(str: string | null | undefined): boolean {
     return str === null || str === undefined || str === '';
   }
 
