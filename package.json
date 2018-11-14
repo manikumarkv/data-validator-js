@@ -19,7 +19,9 @@
     "type": "git",
     "url": "git+https://github.com/manikumarkv/bill-app-models.git"
   },
-  "keywords": ["Billing App models"],
+  "keywords": [
+    "Billing App models"
+  ],
   "author": "“Mani <“manikumarkv@gmail.com”>",
   "license": "ISC",
   "bugs": {
