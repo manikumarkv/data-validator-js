@@ -1,4 +1,5 @@
-import { Greeter, Transaction, Customer, ScriptUtils } from '../index';
+
+ import { Greeter, Transaction, Customer, ScriptUtils } from '../index';
 
 test('My Greeter', () => {
   expect(Greeter('Carl')).toBe('Hello Carl');
