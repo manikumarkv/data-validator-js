@@ -14,15 +14,15 @@ Usage
 
 * [Installation and setup](#installation)
     - [Using npm](#installation)
-        - [SetUp in TS](#setup)
-    * [Usage](#usage)
-        + [IsNullOrEmpty(value: string | null | undefined)](#isnullorempty)
-        + [IsValidEmail(value: string | null | undefined)](#isvalidemail)
-        + [IsValidString(value: string | null | undefined)](#isvalidstring)
-        + [IsValidPhoneNumber(value: string)](#isvalidphonenumber)
-        + [IsValidNumber(value: string)](#isvalidnumber)
-        + [IsValidAlphaNumeric(value: string](#isvalidalphanumeric)
-        + [IsValidAlphaNumericWithSpecialChars(value: string](#isvalidalphanumericWithspecialchars)
+    - [SetUp in TS](#setup)
+* [Usage](#usage)
+    + [IsNullOrEmpty(value: string | null | undefined)](#isnullorempty)
+    + [IsValidEmail(value: string | null | undefined)](#isvalidemail)
+    + [IsValidString(value: string | null | undefined)](#isvalidstring)
+    + [IsValidPhoneNumber(value: string)](#isvalidphonenumber)
+    + [IsValidNumber(value: string)](#isvalidnumber)
+    + [IsValidAlphaNumeric(value: string](#isvalidalphanumeric)
+    + [IsValidAlphaNumericWithSpecialChars(value: string](#isvalidalphanumericWithspecialchars)
 
 
 
@@ -78,6 +78,7 @@ isValidEmail = StringUtilities.IsValidEmail('xyz@xyx.abc') // true
 ### IsValidString(value: string | null | undefined): boolean
 
 ```Typescript
+
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
 let isValid = StringUtilities.IsValidString('test string') // true
@@ -93,6 +94,7 @@ isValid = StringUtilities.IsValidString('xyz@xyx.abc') // false
 ### IsValidPhoneNumber(value: string): boolean
 
 ```Typescript
+
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
 let isValidPhoneNumber = StringUtilities.IsValidPhoneNumber('test') // false

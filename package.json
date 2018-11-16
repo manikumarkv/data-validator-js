@@ -1,6 +1,6 @@
 {
   "name": "data-validator-js",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Validation Methods for all types of Data",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
