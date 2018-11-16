@@ -16,13 +16,13 @@ Usage
     - [Using npm](#installation)
         - [SetUp in TS](#setup)
     * [Usage](#usage)
-        + [IsNullOrEmpty(value: string | null | undefined)](#IsNullOrEmpty)
-        + [IsValidEmail(value: string | null | undefined)](#IsValidEmail)
-        + [IsValidString(value: string | null | undefined)](#IsValidString)
-        + [IsValidPhoneNumber(value: string)](#IsValidPhoneNumber)
-        + [IsValidNumber(value: string)](#IsValidNumber)
-        + [IsValidAlphaNumeric(value: string](#IsValidAlphaNumeric)
-        + [IsValidAlphaNumericWithSpecialChars(value: string](#IsValidAlphaNumericWithSpecialChars)
+        + [IsNullOrEmpty(value: string | null | undefined)](#isnullorempty)
+        + [IsValidEmail(value: string | null | undefined)](#isvalidemail)
+        + [IsValidString(value: string | null | undefined)](#isvalidstring)
+        + [IsValidPhoneNumber(value: string)](#isvalidphonenumber)
+        + [IsValidNumber(value: string)](#isvalidnumber)
+        + [IsValidAlphaNumeric(value: string](#isvalidalphanumeric)
+        + [IsValidAlphaNumericWithSpecialChars(value: string](#isvalidalphanumericWithspecialchars)
 
 
 
@@ -34,7 +34,8 @@ npm install --save-dev data-validator-js
 
 ## Setup
 
-```Typescript
+``` Typescript
+
 import { StringUtilities } from "data-validator-js";
 
 ```
@@ -45,6 +46,7 @@ import { StringUtilities } from "data-validator-js";
 ### IsNullOrEmpty(value: string | null | undefined): boolean
 
 ```Typescript
+
 import { StringUtilities } from "data-validator-js";
 
 let isValidString = StringUtilities.IsNullOrEmpty('test string') // false
@@ -60,6 +62,7 @@ isValidString = StringUtilities.IsNullOrEmpty(null) // true
 ### IsValidEmail(value: string | null | undefined): boolean 
 
 ```Typescript
+
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
 let isValidEmail = StringUtilities.IsValidEmail('test string') // false
