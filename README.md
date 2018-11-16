@@ -14,7 +14,7 @@ Usage
 
 * [Installation and setup](#installation)
     - [Using npm](#installation)
-    - [SetUp in TS](#setup)
+    - [Setup in TS](#setup)
 * [Usage](#usage)
     + [IsNullOrEmpty(value: string | null | undefined)](#isnullorempty)
     + [IsValidEmail(value: string | null | undefined)](#isvalidemail)
@@ -102,5 +102,55 @@ isValidPhoneNumber = StringUtilities.IsValidPhoneNumber('123') // false
 isValidPhoneNumber = StringUtilities.IsValidPhoneNumber('1234567890') // true
 isValidPhoneNumber = StringUtilities.IsValidPhoneNumber('') // false
 isValidPhoneNumber = StringUtilities.IsValidPhoneNumber(null) // false
+
+```
+
+## IsValidNumber
+
+### IsValidNumber(value: string): boolean
+
+```Typescript
+
+import { StringUtilities } from "data-validator-js";
+// isValidEmail Validates the given value is valid email format or not 
+let isValid = StringUtilities.IsValidNumber('test') // false
+isValid = StringUtilities.IsValidNumber('123') // true
+isValid = StringUtilities.IsValidNumber(1235) // true
+isValid = StringUtilities.IsValidNumber('ee1234567890') // false
+isValid = StringUtilities.IsValidNumber('') // false
+isValid = StringUtilities.IsValidNumber(null) // false
+
+```
+
+#IsValidAlphaNumeric
+
+### IsValidAlphaNumeric(value : string): boolean
+
+```Typescript
+
+import { StringUtilities } from "data-validator-js";
+// isValidEmail Validates the given value is valid email format or not 
+let isValid = StringUtilities.IsValidAlphaNumeric('test') // false
+isValid = StringUtilities.IsValidAlphaNumeric('12rf3') // true
+isValid = StringUtilities.IsValidAlphaNumeric('4545kk') // true
+isValid = StringUtilities.IsValidAlphaNumeric('ee1234567890') // true
+isValid = StringUtilities.IsValidAlphaNumeric('') // false
+isValid = StringUtilities.IsValidAlphaNumeric(null) // false
+
+```
+## IsValidAlphaNumericWithSpecialChars
+
+### IsValidAlphaNumericWithSpecialChars(value: string): boolean
+
+```Typescript
+
+import { StringUtilities } from "data-validator-js";
+// isValidEmail Validates the given value is valid email format or not 
+let isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('test') // false
+isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('12rf3') // false
+isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('4545kk*&') // true
+isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('ee12345$%^6789*0') // true
+isValid = StringUtilities.IsValidAlphaNumeric('3454546') // false
+isValid = StringUtilities.IsValidAlphaNumeric(null) // false
 
 ```
