@@ -1,7 +1,7 @@
 {
-  "name": "bill-app-models",
-  "version": "1.0.5",
-  "description": "Model Classes for Billing App",
+  "name": "data-validator-js",
+  "version": "1.0.8",
+  "description": "Validation Methods for all types of Data",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -17,17 +17,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manikumarkv/bill-app-models.git"
+    "url": "git+https://github.com/manikumarkv/data-validator-js.git"
   },
   "keywords": [
-    "Billing App models"
+    "validator",
+    "Validations",
+    "js",
+    "Validation Library",
+    "regex"
   ],
   "author": "“Mani <“manikumarkv@gmail.com”>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/manikumarkv/bill-app-models/issues"
+    "url": "https://github.com/manikumarkv/data-validator-js/issues"
   },
-  "homepage": "https://github.com/manikumarkv/bill-app-models#readme",
+  "homepage": "https://github.com/manikumarkv/data-validator-js#readme",
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "jest": "^23.6.0",

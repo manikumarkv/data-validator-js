@@ -1,2 +1,2 @@
-# bill-app-models
-Model Classes for Billing App
+# Validation Library
+Validation Library for all types of Data
