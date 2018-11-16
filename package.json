@@ -27,7 +27,7 @@
     "regex"
   ],
   "author": "“Mani <“manikumarkv@gmail.com”>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/manikumarkv/data-validator-js/issues"
   },
