@@ -1,6 +1,5 @@
 # data-validator-js
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Downloads][downloads-image]][npm-url]
 
 Javascript validations and utility library
 
@@ -16,15 +15,14 @@ Usage
     - [Using npm](#installation)
     - [Setup in TS](#setup)
 * [Usage](#usage)
-    + [IsNullOrEmpty(value: string | null | undefined)](#isnullorempty)
-    + [IsValidEmail(value: string | null | undefined)](#isvalidemail)
-    + [IsValidString(value: string | null | undefined)](#isvalidstring)
-    + [IsValidPhoneNumber(value: string)](#isvalidphonenumber)
-    + [IsValidNumber(value: string)](#isvalidnumber)
-    + [IsValidAlphaNumeric(value: string](#isvalidalphanumeric)
-    + [IsValidAlphaNumericWithSpecialChars(value: string](#isvalidalphanumericWithspecialchars)
-
-
+    * [String Utilities](#stringutilities)
+        + [IsNullOrEmpty(value: string | null | undefined)](#isnullorempty)
+        + [IsValidEmail(value: string | null | undefined)](#isvalidemail)
+        + [IsValidString(value: string | null | undefined)](#isvalidstring)
+        + [IsValidPhoneNumber(value: string)](#isvalidphonenumber)
+        + [IsValidNumber(value: string)](#isvalidnumber)
+        + [IsValidAlphaNumeric(value: string)](#isvalidalphanumeric)
+        + [IsValidAlphaNumericWithSpecialChars(value: string)](#isvalidalphanumericwithspecialchars)
 
 ## Installation
 
@@ -150,7 +148,7 @@ let isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('test') // fal
 isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('12rf3') // false
 isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('4545kk*&') // true
 isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('ee12345$%^6789*0') // true
-isValid = StringUtilities.IsValidAlphaNumeric('3454546') // false
-isValid = StringUtilities.IsValidAlphaNumeric(null) // false
+isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars('3454546') // false
+isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars(null) // false
 
 ```
