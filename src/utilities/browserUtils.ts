@@ -3,97 +3,110 @@ class BrowserUtilities {
      * GetBrowser
      */
     public static GetBrowser(): string {
-        return ''
-    }
+        const userAgent = window.navigator.userAgent;
+        var isBrowserIE = (userAgent.indexOf("MSIE") != -1 || userAgent.indexOf("Trident") != -1) ? true : false;
+        var isBrowserEdge = (userAgent.indexOf("Edge/") != -1) ? true : false;
+        var isBrowserChrome = (userAgent.indexOf("Chrome") != -1) ? true : false;
+        var isBrowserFirefox = (userAgent.indexOf("Firefox") != -1) ? true : false;
+        var isBrowserSafari;
+        if (userAgent.indexOf("Safari") != -1) {
+            if ((userAgent.indexOf("Chrome") != -1) || (userAgent.indexOf("Android") != -1)) {
+                isBrowserSafari = false;
+            }
+            else {
+                isBrowserSafari = true;
+            }
+        }
 
-    /**
-     * IsChrome
-     */
-    public static IsChromeBrowser(): boolean {
-        return false
-    }
-
-    /**
-     * IsIEBrowser
-     */
-    public static IsIEBrowser(): boolean {
-        return false;
-    }
-
-    /**
-     * IsSafari
-     */
-    public static IsSafariBrowser(): boolean {
-        return false
-    }
-
-    /**
-     * IsFirefoxBrowser
-     */
-    public static IsFirefoxBrowser(): boolean {
-        return false
-    }
-
-    /**
-     * IsEdgeBrowser
-     */
-    public static IsEdgeBrowser(): boolean {
-        return false;
+        if (isBrowserChrome) {
+            return "Chrome";
+        }
+        else if (isBrowserEdge) {
+            return "Edge";
+        }
+        else if (isBrowserFirefox) {
+            return "FireFox";
+        }
+        else if (isBrowserIE) {
+            return "Internet Explorer";
+        }
+        else if (isBrowserSafari) {
+            return "Safari";
+        }
+        else
+            return 'No browser';
     }
 
     /**
      * IsOffline
      */
     public IsOffline(): boolean {
-        return false;
+        if (navigator.onLine)
+            return false;
+        else
+            return true;
     }
 
     /**
      * IsOnline
      */
     public IsOnline(): boolean {
-        return false;
+        if (navigator.onLine)
+            return true;
+        else
+            return false;
     }
 
     /**
      * IsMacMachine
      */
     public IsMacMachine(): boolean {
-        return false
+        if (window.navigator.platform == "MacIntel")
+            return true
+        else
+            return false
     }
 
     /**
      * IsUbuntuMachine
      */
     public IsUbuntuMachine(): boolean {
-        return false;
+        if (window.navigator.platform == "Linux")
+            return true
+        else
+            return false
     }
 
     /**
      * IsWindowsMachine
      */
     public IsWindowsMachine(): boolean {
-        return false
+        if (window.navigator.platform == "Win")
+            return true
+        else
+            return false
     }
 
     /**
      * IsBrowser
      */
-    public IsBrowser(): boolean {
-        return false;
-    }
+    // public IsBrowser(): boolean {
+    //     return false;
+    // }
 
     /**
      * GetUserLanguage
      */
-    public GetUserLanguage() : string{
-        return ''
+    public GetUserLanguage(): string {
+        var getUserLanguage = navigator.language
+        return getUserLanguage
     }
 
     /**
      * IsChargerConnected
      */
     public IsChargerConnected(): boolean {
+
         return false
     }
 
@@ -101,6 +114,7 @@ class BrowserUtilities {
      * getBatteryStatus
      */
     public getBatteryStatus() {
+
         // navigator.getBattery().then(a=> {console.log(a)})
     }
 
@@ -108,20 +122,29 @@ class BrowserUtilities {
      * IsCookieEnabled
      */
     public IsCookieEnabled() {
-        return false
+        if (navigator.cookieEnabled)
+            return true
+        else
+            return false
     }
 
     /**
      * IsCookieDisabled
      */
     public IsCookieDisabled() {
-        return false // navigator.cookieEnabled
+        if (navigator.cookieEnabled)
+            return false
+        else
+            return true
     }
 
     /**
      * IsJavaEnabled
      */
     public IsJavaEnabled() {
-        return false // navigator.javaEnabled();
+        if (navigator.javaEnabled)
+            return true
+        else
+            return false
     }
 }
