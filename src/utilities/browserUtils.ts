@@ -3,77 +3,73 @@ class BrowserUtilities {
      * GetBrowser
      */
     public static GetBrowser(): string {
-        return ''
-    }
+        const userAgent = window.navigator.userAgent;
+        var isBrowserIE = (userAgent.indexOf("MSIE") != -1 || userAgent.indexOf("Trident") != -1) ? true : false;
+        var isBrowserEdge = (userAgent.indexOf("Edge/") != -1) ? true : false;
+        var isBrowserChrome = (userAgent.indexOf("Chrome") != -1) ? true : false;
+        var isBrowserFirefox = (userAgent.indexOf("Firefox") != -1) ? true : false;
+        var isBrowserSafari;
+        if (userAgent.indexOf("Safari") != -1) {
+            if ((userAgent.indexOf("Chrome") != -1) || (userAgent.indexOf("Android") != -1)) {
+                isBrowserSafari = false;
+            }
+            else {
+                isBrowserSafari = true;
+            }
+        }
 
-    /**
-     * IsChrome
-     */
-    public static IsChromeBrowser(): boolean {
-        return false
-    }
-
-    /**
-     * IsIEBrowser
-     */
-    public static IsIEBrowser(): boolean {
-        return false;
-    }
-
-    /**
-     * IsSafari
-     */
-    public static IsSafariBrowser(): boolean {
-        return false
-    }
-
-    /**
-     * IsFirefoxBrowser
-     */
-    public static IsFirefoxBrowser(): boolean {
-        return false
-    }
-
-    /**
-     * IsEdgeBrowser
-     */
-    public static IsEdgeBrowser(): boolean {
-        return false;
+        if (isBrowserChrome) {
+            return "Chrome";
+        }
+        else if (isBrowserEdge) {
+            return "Edge";
+        }
+        else if (isBrowserFirefox) {
+            return "FireFox";
+        }
+        else if (isBrowserIE) {
+            return "Internet Explorer";
+        }
+        else if (isBrowserSafari) {
+            return "Safari";
+        }
+        else
+            return 'No browser';
     }
 
     /**
      * IsOffline
      */
     public IsOffline(): boolean {
-        return false;
+        return navigator.onLine
     }
 
     /**
      * IsOnline
      */
     public IsOnline(): boolean {
-        return false;
+        return navigator.onLine;
     }
 
     /**
      * IsMacMachine
      */
     public IsMacMachine(): boolean {
-        return false
+        return window.navigator.platform == "MacIntel"
     }
 
     /**
      * IsUbuntuMachine
      */
     public IsUbuntuMachine(): boolean {
-        return false;
+        return window.navigator.platform == "Linux"
     }
 
     /**
      * IsWindowsMachine
      */
     public IsWindowsMachine(): boolean {
-        return false
+        return window.navigator.platform == "Win"
     }
 
     /**
@@ -86,8 +82,8 @@ class BrowserUtilities {
     /**
      * GetUserLanguage
      */
-    public GetUserLanguage() : string{
-        return ''
+    public GetUserLanguage(): string {
+        return navigator.language
     }
 
     /**
@@ -100,28 +96,29 @@ class BrowserUtilities {
     /**
      * getBatteryStatus
      */
-    public getBatteryStatus() {
-        // navigator.getBattery().then(a=> {console.log(a)})
-    }
+    // public getBatteryStatus() {
+
+    //     navigator.getBattery().then(a=> {console.log(a)})
+    // }
 
     /**
      * IsCookieEnabled
      */
     public IsCookieEnabled() {
-        return false
+        return navigator.cookieEnabled
     }
 
     /**
      * IsCookieDisabled
      */
     public IsCookieDisabled() {
-        return false // navigator.cookieEnabled
+        return navigator.cookieEnabled
     }
 
     /**
      * IsJavaEnabled
      */
     public IsJavaEnabled() {
-        return false // navigator.javaEnabled();
+        return navigator.javaEnabled
     }
 }
