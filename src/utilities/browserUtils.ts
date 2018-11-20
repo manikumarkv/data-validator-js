@@ -41,110 +41,84 @@ class BrowserUtilities {
      * IsOffline
      */
     public IsOffline(): boolean {
-        if (navigator.onLine)
-            return false;
-        else
-            return true;
+        return navigator.onLine
     }
 
     /**
      * IsOnline
      */
     public IsOnline(): boolean {
-        if (navigator.onLine)
-            return true;
-        else
-            return false;
+        return navigator.onLine;
     }
 
     /**
      * IsMacMachine
      */
     public IsMacMachine(): boolean {
-        if (window.navigator.platform == "MacIntel")
-            return true
-        else
-            return false
+        return window.navigator.platform == "MacIntel"
     }
 
     /**
      * IsUbuntuMachine
      */
     public IsUbuntuMachine(): boolean {
-        if (window.navigator.platform == "Linux")
-            return true
-        else
-            return false
+        return window.navigator.platform == "Linux"
     }
 
     /**
      * IsWindowsMachine
      */
     public IsWindowsMachine(): boolean {
-        if (window.navigator.platform == "Win")
-            return true
-        else
-            return false
+        return window.navigator.platform == "Win"
     }
 
     /**
      * IsBrowser
      */
-    // public IsBrowser(): boolean {
-    //     return false;
-    // }
+    public IsBrowser(): boolean {
+        return false;
+    }
 
     /**
      * GetUserLanguage
      */
     public GetUserLanguage(): string {
-        var getUserLanguage = navigator.language
-        return getUserLanguage
+        return navigator.language
     }
 
     /**
      * IsChargerConnected
      */
     public IsChargerConnected(): boolean {
-
         return false
     }
 
     /**
      * getBatteryStatus
      */
-    public getBatteryStatus() {
+    // public getBatteryStatus() {
 
-        // navigator.getBattery().then(a=> {console.log(a)})
-    }
+    //     navigator.getBattery().then(a=> {console.log(a)})
+    // }
 
     /**
      * IsCookieEnabled
      */
     public IsCookieEnabled() {
-        if (navigator.cookieEnabled)
-            return true
-        else
-            return false
+        return navigator.cookieEnabled
     }
 
     /**
      * IsCookieDisabled
      */
     public IsCookieDisabled() {
-        if (navigator.cookieEnabled)
-            return false
-        else
-            return true
+        return navigator.cookieEnabled
     }
 
     /**
      * IsJavaEnabled
      */
     public IsJavaEnabled() {
-        if (navigator.javaEnabled)
-            return true
-        else
-            return false
+        return navigator.javaEnabled
     }
 }
