@@ -68,7 +68,6 @@ export default class ConverterUtils {
      * ConvertToSnakeCase - Convert the value to SnakeCase
      * @param value String which we need to check
      */
-    //TODO: change snake case logic
     public static ConvertToSnakeCase(value: string): string {
         let string = value.trim().toLowerCase();
         return string.replace(/\s+/g, '_');

@@ -56,7 +56,7 @@ test('ScriptUtilities ==> ConvertToNumber ==> case 11', () => {
     expect(testedMethodResult).toBe(myExpectations);
 });
 test('ScriptUtilities ==> ConvertToTitleCase ==> case 12', () => {
-    let testedMethodResult = ConverterUtils.ConvertToTitleCase('hai hello how are you');
+    let testedMethodResult = ConverterUtils.ConvertToTitleCase('hai hEllo how are you');
     let myExpectations = 'Hai Hello How Are You'
     expect(testedMethodResult).toBe(myExpectations);
 });
@@ -70,12 +70,12 @@ test('ScriptUtilities ==> ConvertToSnakeCase ==> case 14', () => {
     let myExpectations = 'hai_how_are_you'
     expect(testedMethodResult).toBe(myExpectations);
 });
-test('ScriptUtilities ==> ConvertToToggleCase ==> case 16', () => {
+test('ScriptUtilities ==> ConvertToToggleCase ==> case 15', () => {
     let testedMethodResult = ConverterUtils.ConvertToToggleCase('HaI heLlO');
     let myExpectations = 'hAi HElLo'
     expect(testedMethodResult).toBe(myExpectations);
 });
-test('ScriptUtilities ==> ConvertToSentenceCase ==> case 17', () => {
+test('ScriptUtilities ==> ConvertToSentenceCase ==> case 16', () => {
     let testedMethodResult = ConverterUtils.ConvertToSentenceCase('HAI HELLO how ARE YOU');
     let myExpectations = 'Hai hello how are you'
     expect(testedMethodResult).toBe(myExpectations);
