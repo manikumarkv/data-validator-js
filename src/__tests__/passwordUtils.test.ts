@@ -56,9 +56,6 @@ test('PasswordUtils ==> IsPasswordStrong ==> case 2', () => {
 
 test('PasswordUtils ==> CheckpasswordStregth==> case 1', () => {
     let Options: any = {
-        weekOptions: {},
-        mediumOptions:{},
-        strongOptions:{}
     }
     let testedMethodResult = passwordUtils.CheckPasswordStrength('asdfgh12')
     let myExpectations = "week"
@@ -67,9 +64,6 @@ test('PasswordUtils ==> CheckpasswordStregth==> case 1', () => {
 
 test('PasswordUtils ==> CheckpasswordStrength==> case 2', () => {
     let Options: any = {
-        weekOptions: {},
-        mediumOptions:{},
-        strongOptions:{}
     }
     let testedMethodResult = passwordUtils.CheckPasswordStrength('asdfghlipyop1234#!')
     let myExpectations = "good"
@@ -78,9 +72,6 @@ test('PasswordUtils ==> CheckpasswordStrength==> case 2', () => {
 
 test('PasswordUtils ==> CheckpasswordStrength==> case 3', () => {
     let Options: any = {
-        weekOptions: {},
-        mediumOptions:{},
-        strongOptions:{}
     }
     let testedMethodResult = passwordUtils.CheckPasswordStrength('asdfghlipyopqwertyuio12345678#!**@@')
     let myExpectations = "strong"

@@ -25,6 +25,33 @@ export default class PasswordUtilities {
         maxNumberics: 10,
         maxSpecialChars: 8
     }
+
+    private static passwordDefaultOptions: any = {
+        weekOptions: {
+            minAlphabets: 6,
+            minNumerics: 2,
+            minSpecialChars: 0,
+            maxAlphabets: 10,
+            maxNumberics: 4,
+            maxSpecialChars: 0
+        },
+        mediumOptions: {
+            minAlphabets: 12,
+            minNumerics: 4,
+            minSpecialChars: 2,
+            maxAlphabets: 20,
+            maxNumberics: 8,
+            maxSpecialChars: 4
+        },
+        strongOptions: {
+            minAlphabets: 20,
+            minNumerics: 8,
+            minSpecialChars: 6,
+            maxAlphabets: 25,
+            maxNumberics: 10,
+            maxSpecialChars: 8
+        }
+    }
     private static stringArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     private static numArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     private static specialChars = ['!', '@', '#', '$', '%', '^', '&', '*']
@@ -191,40 +218,85 @@ export default class PasswordUtilities {
     /** 
      * checkPasswordStrength
     */
-    public static CheckPasswordStrength(value: string, options?:object): PasswordStrength {
+    public static CheckPasswordStrength(value: string, options?: object): PasswordStrength {
+        let defaultOptions = this.passwordDefaultOptions;
+        //let _options: any = options ? options : this.passwordDefaultOptions
+        (<any>Object).assign(defaultOptions, options)
+        const passwordDevidedArray: any = this.getPasswordStringObject(value)
+        let strings: [] = passwordDevidedArray.strings
+        let nums: [] = passwordDevidedArray.nums
+        let specialCharacters: [] = passwordDevidedArray.specialCharacters
+        // let inpArray = value.split("")
+        // inpArray.map(val => {
+        //     if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
+        //         strings.push(val)
+        //     } else if (this.numArray.indexOf(val) > -1) {
+        //         nums.push(val)
+        //     }
+        //     else if (this.specialChars.indexOf(val) > -1) {
+        //         specialCharacters.push(val)
+        //     }
+        // })
+        //  if (options == null) {
+        let _weakoptions = defaultOptions.weekOptions;
+        if ((this.isValidMinLength(strings.length, _weakoptions.minAlphabets) && 
+        this.isValidMaxLength(strings.length, _weakoptions.maxAlphabets)) && 
+        (this.isValidMinLength(nums.length,_weakoptions.minNumerics)&& 
+        (this.isValidMaxLength(nums.length, _weakoptions.maxNumberics))))
+        {
+            return PasswordStrength.Week;
+        }
+        else if ((this.isValidMinLength(strings.length, _weakoptions.minAlphabets) && 
+        this.isValidMaxLength(strings.length, _weakoptions.maxAlphabets)) && 
+        (this.isValidMinLength(nums.length,_weakoptions.minNumerics)&& 
+        (this.isValidMaxLength(nums.length, _weakoptions.maxNumberics))) && 
+        (this.isValidMinLength(specialCharacters.length,_weakoptions.minSpecialChars)&& 
+        this.isValidMaxLength(specialCharacters.length,_weakoptions.maxSpecialChars)))
+        {
+            return PasswordStrength.Good;
+        }
+        else if ((this.isValidMinLength(strings.length, _weakoptions.minAlphabets) && 
+        this.isValidMaxLength(strings.length, _weakoptions.maxAlphabets)) && 
+        (this.isValidMinLength(nums.length,_weakoptions.minNumerics)&& 
+        (this.isValidMaxLength(nums.length, _weakoptions.maxNumberics))) && 
+        (this.isValidMinLength(specialCharacters.length,_weakoptions.minSpecialChars)&& 
+        this.isValidMaxLength(specialCharacters.length,_weakoptions.maxSpecialChars)))
+        {
+            return PasswordStrength.Strong;
+        }
+        else
+        return '';
+         
+    }
+
+    private static isValidMinLength(sourceLength : number, targetLength : number){
+        return sourceLength >= targetLength
+    }
+
+    private static isValidMaxLength(sourceLength : number, targetLength : number){
+        return sourceLength <= targetLength
+    }
+
+    private static getPasswordStringObject(value: string): object {
         let strings: any = []
         let nums: any = []
         let specialCharacters: any = []
         let inpArray = value.split("")
-            inpArray.map(val => {
-                if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
-                    strings.push(val)
-                } else if (this.numArray.indexOf(val) > -1) {
-                    nums.push(val)
-                }
-                else if (this.specialChars.indexOf(val) > -1) {
-                    specialCharacters.push(val)
-                }
-            })
-        if (options == null) {
-            if ((strings.length >= this.weekOptions.minAlphabets && strings.length <= this.weekOptions.maxAlphabets) && (nums.length >= this.weekOptions.minNumerics && nums.length <= this.weekOptions.maxNumberics) && (specialCharacters.length >= this.weekOptions.minSpecialChars && specialCharacters.length <= this.weekOptions.maxSpecialChars))
-                return PasswordStrength.Week;
-            else if ((strings.length >= this.mediumOptions.minAlphabets && strings.length <= this.mediumOptions.maxAlphabets) && (nums.length >= this.mediumOptions.minNumerics && nums.length <= this.mediumOptions.maxNumberics) && (specialCharacters.length >= this.mediumOptions.minSpecialChars && specialCharacters.length <= this.mediumOptions.maxSpecialChars))
-                return PasswordStrength.Good;
-            else if ((strings.length >= this.strongOptions.minAlphabets && strings.length <= this.strongOptions.maxAlphabets) && (nums.length >= this.strongOptions.minNumerics && nums.length <= this.strongOptions.maxNumberics) && (specialCharacters.length >= this.strongOptions.minSpecialChars && specialCharacters.length <= this.strongOptions.maxSpecialChars))
-                return PasswordStrength.Strong;
-            else
-                return '';
-        }
-        else
-        {
-            
-            return '';
+        inpArray.map(val => {
+            if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
+                strings.push(val)
+            } else if (this.numArray.indexOf(val) > -1) {
+                nums.push(val)
+            }
+            else if (this.specialChars.indexOf(val) > -1) {
+                specialCharacters.push(val)
+            }
+        })
+        return {
+            string: strings,
+            nums: nums,
+            specialCharacters: specialCharacters
         }
     }
-   
+
 }
-
-
-
-
