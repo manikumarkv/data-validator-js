@@ -4,13 +4,13 @@ class BrowserUtilities {
      */
     public static GetBrowser(): string {
         const userAgent = window.navigator.userAgent;
-        var isBrowserIE = (userAgent.indexOf("MSIE") != -1 || userAgent.indexOf("Trident") != -1) ? true : false;
-        var isBrowserEdge = (userAgent.indexOf("Edge/") != -1) ? true : false;
-        var isBrowserChrome = (userAgent.indexOf("Chrome") != -1) ? true : false;
-        var isBrowserFirefox = (userAgent.indexOf("Firefox") != -1) ? true : false;
-        var isBrowserSafari;
-        if (userAgent.indexOf("Safari") != -1) {
-            if ((userAgent.indexOf("Chrome") != -1) || (userAgent.indexOf("Android") != -1)) {
+        const isBrowserIE = (userAgent.indexOf("MSIE") !== -1 || userAgent.indexOf("Trident") !== -1) ? true : false;
+        const isBrowserEdge = (userAgent.indexOf("Edge/") !== -1) ? true : false;
+        const isBrowserChrome = (userAgent.indexOf("Chrome") !== -1) ? true : false;
+        const isBrowserFirefox = (userAgent.indexOf("Firefox") !== -1) ? true : false;
+        let isBrowserSafari;
+        if (userAgent.indexOf("Safari") !== -1) {
+            if ((userAgent.indexOf("Chrome") !== -1) || (userAgent.indexOf("Android") !== -1)) {
                 isBrowserSafari = false;
             }
             else {
@@ -34,7 +34,7 @@ class BrowserUtilities {
             return "Safari";
         }
         else
-            return 'No browser';
+            {return 'No browser';}
     }
 
     /**
@@ -55,21 +55,21 @@ class BrowserUtilities {
      * IsMacMachine
      */
     public IsMacMachine(): boolean {
-        return window.navigator.platform == "MacIntel"
+        return window.navigator.platform === "MacIntel"
     }
 
     /**
      * IsUbuntuMachine
      */
     public IsUbuntuMachine(): boolean {
-        return window.navigator.platform == "Linux"
+        return window.navigator.platform === "Linux"
     }
 
     /**
      * IsWindowsMachine
      */
     public IsWindowsMachine(): boolean {
-        return window.navigator.platform == "Win"
+        return window.navigator.platform === "Win"
     }
 
     /**
