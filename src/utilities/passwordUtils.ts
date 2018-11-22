@@ -23,7 +23,7 @@ export default class PasswordUtilities {
      * GenerateGoodPassword
      */
     public static GenerateGoodPassword(): string {
-        let retVal=""
+        let retVal = ""
         for (let i = 0, n = this.charset.length; i < this.passwordDefaultOptions.mediumOptions.minAlphabets; ++i) {
             retVal += this.charset.charAt(Math.floor(Math.random() * n));
         }
@@ -37,7 +37,6 @@ export default class PasswordUtilities {
         const retValArray = this.shuffle(inpArray)
         return retValArray;
     }
-
     /**
      * GenerateStrongePassword
      */
@@ -61,12 +60,10 @@ export default class PasswordUtilities {
      */
     public static IsPasswordWeek(value: string): boolean {
         const defaultOptions = this.passwordDefaultOptions.weekOptions;
-        if (this.isValid(value,defaultOptions))
-        {
+        if (this.isValid(value, defaultOptions)) {
             return true
-        } 
-        else
-        {
+        }
+        else {
             return false
         }
     }
@@ -74,92 +71,86 @@ export default class PasswordUtilities {
      * IsPasswordGood
      */
     public static IsPasswordGood(value: string): boolean {
-        const _mediumoptions = this.passwordDefaultOptions.mediumOptions
-        if (this.isValid(value,_mediumoptions))
-        {
+        const mediumoptions = this.passwordDefaultOptions.mediumOptions
+        if (this.isValid(value, mediumoptions)) {
             return true
         }
-        else
-        {
+        else {
             return false
-        }        
+        }
     }
     /**
      * IsPasswordStrong
      */
     public static IsPasswordStrong(value: string): boolean {
-        const _strongoptions = this.passwordDefaultOptions.strongOptions
-        if (this.isValid(value,_strongoptions))
-        {
+        const strongoptions = this.passwordDefaultOptions.strongOptions
+        if (this.isValid(value, strongoptions)) {
             return true
         }
-        else
-        {
+        else {
             return false
         }
     }
     /** 
      * checkPasswordStrength
-    */
+     */
     public static CheckPasswordStrength(value: string, options?: object): PasswordStrength {
         const defaultOptions = this.passwordDefaultOptions;
         (<any>Object).assign(defaultOptions, options)
-        const _weekCheck = this.isValid(value, defaultOptions.weekOptions)
-        const _mediumCheck = this.isValid(value, defaultOptions.mediumOptions)
-        const _strongCheck = this.isValid(value, defaultOptions.strongOptions)
-        if (_weekCheck)
-        {
+        const weekCheck = this.isValid(value, defaultOptions.weekOptions)
+        const mediumCheck = this.isValid(value, defaultOptions.mediumOptions)
+        const strongCheck = this.isValid(value, defaultOptions.strongOptions)
+        if (weekCheck) {
             return PasswordStrength.Week
         }
-        else if (_mediumCheck)
-        {
+        else if (mediumCheck) {
             return PasswordStrength.Good
         }
-        else if (_strongCheck)
-        {
+        else if (strongCheck) {
             return PasswordStrength.Strong
         }
-        else
-        {
+        else {
             return '';
-        }    
+        }
     }
 
     private static passwordDefaultOptions: any = {
-        weekOptions: {
-            minAlphabets: 6,
-            minNumerics: 2,
-            minSpecialChars: 0,
-            maxAlphabets: 10,
-            maxNumberics: 4,
-            maxSpecialChars: 0
-        },
         mediumOptions: {
-            minAlphabets: 12,
-            minNumerics: 4,
-            minSpecialChars: 2,
             maxAlphabets: 20,
             maxNumberics: 8,
-            maxSpecialChars: 4
+            maxSpecialChars: 4,
+            minAlphabets: 12,
+            minNumerics: 4,
+            minSpecialChars: 2
         },
         strongOptions: {
-            minAlphabets: 20,
-            minNumerics: 8,
-            minSpecialChars: 6,
             maxAlphabets: 25,
             maxNumberics: 10,
-            maxSpecialChars: 8
+            maxSpecialChars: 8,
+            minAlphabets: 20,
+            minNumerics: 8,
+            minSpecialChars: 6
+        },
+        weekOptions: {
+            maxAlphabets: 10,
+            maxNumberics: 4,
+            maxSpecialChars: 0,
+            minAlphabets: 6,
+            minNumerics: 2,
+            minSpecialChars: 0
         }
     }
     private static stringArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     private static numArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     private static specialChars = ['!', '@', '#', '$', '%', '^', '&', '*']
     /**
-     * 
-     *Shuffle the inputarray
-     */
+    * 
+    *Shuffle the inputarray
+    */
     private static shuffle(array: any) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
+        let currentIndex = array.length
+        let temporaryValue
+        let randomIndex
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
             // Pick a remaining element...
@@ -192,29 +183,26 @@ export default class PasswordUtilities {
         })
         return {
             alphabets: strings,
-            nums: nums,
-            specialCharacters: specialCharacters
+            numerics: nums,
+            specialCharacter: specialCharacters
         }
     }
-    private static isValid(val : string,options: any){
+    private static isValid(val: string, options: any) {
         const passwordDevidedArray: any = this.getPasswordStringObject(val)
         const strings: [] = passwordDevidedArray.alphabets
-        const nums: [] = passwordDevidedArray.nums
-        const specialCharacters: [] = passwordDevidedArray.specialCharacters
-        const _stringCheck = this.isValidLength(strings.length,options.minAlphabets,options.maxAlphabets)
-        const _numsCheck= this.isValidLength(nums.length,options.minNumerics,options.maxNumberics)
-        const _specialCharCheck=this.isValidLength(specialCharacters.length,options.minSpecialChars,options.maxSpecialChars)
-          if(_stringCheck && _numsCheck && _specialCharCheck)
-          {
+        const nums: [] = passwordDevidedArray.numerics
+        const specialCharacters: [] = passwordDevidedArray.specialCharacter
+        const stringCheck = this.isValidLength(strings.length, options.minAlphabets, options.maxAlphabets)
+        const numsCheck = this.isValidLength(nums.length, options.minNumerics, options.maxNumberics)
+        const specialCharCheck = this.isValidLength(specialCharacters.length, options.minSpecialChars, options.maxSpecialChars)
+        if (stringCheck && numsCheck && specialCharCheck) {
             return true
-          }
-          else
-         {
+        }
+        else {
             return false
-         }
-      }
-    private static isValidLength(val :number,minLength: number, maxLength: number)
-    {
+        }
+    }
+    private static isValidLength(val: number, minLength: number, maxLength: number) {
         return val >= minLength && val <= maxLength
     }
 }
