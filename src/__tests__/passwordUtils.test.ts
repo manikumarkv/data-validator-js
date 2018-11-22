@@ -8,13 +8,13 @@ test('PasswordUtils ==> GenerateSimplePassword==> case 1', () => {
 
 test('PasswordUtils ==> GenerateGoodPassword==> case 1', () => {
     let testedMethodResult = passwordUtils.GenerateGoodPassword().length
-    let myExpectations = 12
+    let myExpectations = 18
     expect(testedMethodResult).toBe(myExpectations);
 });
 
 test('PasswordUtils ==> GenerateStrongPassword==> case 1', () => {
     let testedMethodResult = passwordUtils.GenerateStrongPassword().length
-    let myExpectations = 16
+    let myExpectations = 34
     expect(testedMethodResult).toBe(myExpectations);
 });
 
