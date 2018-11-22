@@ -57,6 +57,27 @@ export default class PasswordUtilities {
     /*
     **Passwordoperations check
     */ 
+   private static getPasswordStringObject(value: string): object {
+    let strings: any = []
+    let nums: any = []
+    let specialCharacters: any = []
+    let inpArray = value.split("")
+    inpArray.map(val => {
+        if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
+            strings.push(val)
+        } else if (this.numArray.indexOf(val) > -1) {
+            nums.push(val)
+        }
+        else if (this.specialChars.indexOf(val) > -1) {
+            specialCharacters.push(val)
+        }
+    })
+    return {
+        string: strings,
+        nums: nums,
+        specialCharacters: specialCharacters
+    }
+}
     private static isWeekoptions(stringLength : number,numsLength : number)
     {
         let defaultOptions = this.passwordDefaultOptions;
