@@ -23,12 +23,12 @@ Usage
         + [IsValidNumber(value: string)](#isvalidnumber)
         + [IsValidAlphaNumeric(value: string)](#isvalidalphanumeric)
         + [IsValidAlphaNumericWithSpecialChars(value: string)](#isvalidalphanumericwithspecialchars)
-    * [Script Utilities](#stringUtils)
+    * [Script Utilities](#scriptutils)
         + [IsNullOrUndefined(obj: object| null| undefined)](#isnullorundefined)
         + [IsMacMachine](#ismacmachine)
         + [getNumericValue(value: string, radix : number = 10)](#getnumericvalue)
     * [Converter Utilities](#converterutils)
-        + [ConvertToCapitals(value: string)](#converttocapital)
+        + [ConvertToCapitals(value: string)](#converttocapitals)
         + [ConvertToLowerCase(value: string)](#converttolowercase)
         + [ConvertToCamelCase(value: string)](#converttocamelcase)
         + [ConvertToString(value: number | string | object | null | undefined)](#converttostring)
@@ -176,9 +176,35 @@ isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars(null) // false
 
 ```Typescript
 import { ScriptUtilities } from "data-validator-js";
-//IsNullOrUndefined  
-let 
+//IsNullOrUndefined checks the obj is null or undefined 
+let IsValid = ScriptUtilities.IsNullOrUndefined(null)//true
+IsValid = ScriptUtilities.IsNullOrUndefined(undefined)//true
+IsValid = ScriptUtilities.IsNullOrUndefined({})//false
+IsValid = ScriptUtilities.IsNullOrUndefined({sdsgf:[]})//false
 
+```
+
+## IsMacMachine
+
+### IsMacMachine(): boolean
+
+```Typescript
+
+import { ScriptUtilities } from "data-validator-js";
+//IsMacMachine checks the machine, returns true if its a mac machine
+let IsValid = ScriptUtilities.IsMacMachine()// if its a mac machine returns true.
+
+```
+
+## getNumericValue
+### getNumericValue(value: string, radix : number = 10): number| null
+
+```Typescript
+
+import { ScriptUtilities } from "data-validator-js";
+//getNumericValue checks and returns a numeric value
+let IsValid = ScriptUtilities.getNumericValue('vish')//NaN
+IsValid = ScriptUtilities.getNumericValue('123')//123
 
 ```
 
