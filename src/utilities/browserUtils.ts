@@ -76,7 +76,6 @@ class BrowserUtilities {
      * IsBrowser
      */
     public IsBrowser(): boolean {
-        navigator.platform.match
         return false;
     }
 

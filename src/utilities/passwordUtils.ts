@@ -1,302 +1,240 @@
-import PasswordStrength from "../passwordStrength";
+import PasswordStrength from '../passwordStrength';
 
 export default class PasswordUtilities {
-    private static weekOptions: any = {
-        minAlphabets: 6,
-        minNumerics: 2,
-        minSpecialChars: 0,
-        maxAlphabets: 10,
-        maxNumberics: 4,
-        maxSpecialChars: 0
+  /**
+   * GenerateSimplePassword
+   */
+  public static charset = 'abcdefghijklmnopqrstuvwxyz';
+  public static numericset = '0123456789';
+  public static specialCharSet = '!@#$%^&*()_+{}[]:<>?/';
+  public static GenerateSimplePassword(): string {
+    let retVal = '';
+    for (let i = 0, n = this.charset.length; i < this.passwordDefaultOptions.weekOptions.minAlphabets; ++i) {
+      retVal += this.charset.charAt(Math.floor(Math.random() * n));
     }
-    private static mediumOptions: any = {
-        minAlphabets: 12,
-        minNumerics: 4,
-        minSpecialChars: 2,
-        maxAlphabets: 20,
-        maxNumberics: 8,
-        maxSpecialChars: 4
+    for (let i = 0, n = this.numericset.length; i < this.passwordDefaultOptions.weekOptions.minNumerics; ++i) {
+      retVal += this.numericset.charAt(Math.floor(Math.random() * n));
     }
-    private static strongOptions: any = {
-        minAlphabets: 20,
-        minNumerics: 8,
-        minSpecialChars: 6,
-        maxAlphabets: 25,
-        maxNumberics: 10,
-        maxSpecialChars: 8
+    const inpArray = retVal.split('');
+    const retValArray = this.shuffle(inpArray);
+    return retValArray;
+  }
+  /**
+   * GenerateGoodPassword
+   */
+  public static GenerateGoodPassword(): string {
+    let retVal = '';
+    for (let i = 0, n = this.charset.length; i < this.passwordDefaultOptions.mediumOptions.minAlphabets; ++i) {
+      retVal += this.charset.charAt(Math.floor(Math.random() * n));
     }
+    for (let i = 0, n = this.numericset.length; i < this.passwordDefaultOptions.mediumOptions.minNumerics; ++i) {
+      retVal += this.numericset.charAt(Math.floor(Math.random() * n));
+    }
+    for (
+      let i = 0, n = this.specialCharSet.length;
+      i < this.passwordDefaultOptions.mediumOptions.minSpecialChars;
+      ++i
+    ) {
+      retVal += this.specialCharSet.charAt(Math.floor(Math.random() * n));
+    }
+    const inpArray = retVal.split('');
+    const retValArray = this.shuffle(inpArray);
+    return retValArray;
+  }
+  /**
+   * GenerateStrongePassword
+   */
+  public static GenerateStrongPassword(): string {
+    let retVal = '';
+    for (let i = 0, n = this.charset.length; i < this.passwordDefaultOptions.strongOptions.minAlphabets; ++i) {
+      retVal += this.charset.charAt(Math.floor(Math.random() * n));
+    }
+    for (let i = 0, n = this.numericset.length; i < this.passwordDefaultOptions.strongOptions.minNumerics; ++i) {
+      retVal += this.numericset.charAt(Math.floor(Math.random() * n));
+    }
+    for (
+      let i = 0, n = this.specialCharSet.length;
+      i < this.passwordDefaultOptions.strongOptions.minSpecialChars;
+      ++i
+    ) {
+      retVal += this.specialCharSet.charAt(Math.floor(Math.random() * n));
+    }
+    const inpArray = retVal.split('');
+    const retValArray = this.shuffle(inpArray);
+    return retValArray;
+  }
+  /**
+   * IsPasswordWeek
+   */
+  public static IsPasswordWeek(value: string): boolean {
+    const defaultOptions = this.passwordDefaultOptions.weekOptions;
+    if (this.isValid(value, defaultOptions)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  /**
+   * IsPasswordGood
+   */
+  public static IsPasswordGood(value: string): boolean {
+    const mediumoptions = this.passwordDefaultOptions.mediumOptions;
+    if (this.isValid(value, mediumoptions)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  /**
+   * IsPasswordStrong
+   */
+  public static IsPasswordStrong(value: string): boolean {
+    const strongoptions = this.passwordDefaultOptions.strongOptions;
+    if (this.isValid(value, strongoptions)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  /**
+   * checkPasswordStrength
+   */
+  public static CheckPasswordStrength(value: string, options?: object): PasswordStrength {
+    const defaultOptions = this.passwordDefaultOptions;
+    (Object as any).assign(defaultOptions, options);
+    const weekCheck = this.isValid(value, defaultOptions.weekOptions);
+    const mediumCheck = this.isValid(value, defaultOptions.mediumOptions);
+    const strongCheck = this.isValid(value, defaultOptions.strongOptions);
+    if (weekCheck) {
+      return PasswordStrength.Week;
+    } else if (mediumCheck) {
+      return PasswordStrength.Good;
+    } else if (strongCheck) {
+      return PasswordStrength.Strong;
+    } else {
+      return '';
+    }
+  }
 
-    private static passwordDefaultOptions: any = {
-        weekOptions: {
-            minAlphabets: 6,
-            minNumerics: 2,
-            minSpecialChars: 0,
-            maxAlphabets: 10,
-            maxNumberics: 4,
-            maxSpecialChars: 0
-        },
-        mediumOptions: {
-            minAlphabets: 12,
-            minNumerics: 4,
-            minSpecialChars: 2,
-            maxAlphabets: 20,
-            maxNumberics: 8,
-            maxSpecialChars: 4
-        },
-        strongOptions: {
-            minAlphabets: 20,
-            minNumerics: 8,
-            minSpecialChars: 6,
-            maxAlphabets: 25,
-            maxNumberics: 10,
-            maxSpecialChars: 8
-        }
-    }
-    private static stringArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    private static numArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-    private static specialChars = ['!', '@', '#', '$', '%', '^', '&', '*']
-    /**
-     * 
-     *Shuffle the inputarray
-     */
-    public static shuffle(array: any) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
+  private static passwordDefaultOptions: any = {
+    mediumOptions: {
+      maxAlphabets: 20,
+      maxNumberics: 8,
+      maxSpecialChars: 4,
+      minAlphabets: 12,
+      minNumerics: 4,
+      minSpecialChars: 2,
+    },
+    strongOptions: {
+      maxAlphabets: 25,
+      maxNumberics: 10,
+      maxSpecialChars: 8,
+      minAlphabets: 20,
+      minNumerics: 8,
+      minSpecialChars: 6,
+    },
+    weekOptions: {
+      maxAlphabets: 10,
+      maxNumberics: 4,
+      maxSpecialChars: 0,
+      minAlphabets: 6,
+      minNumerics: 2,
+      minSpecialChars: 0,
+    },
+  };
+  private static stringArray = [
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z',
+  ];
+  private static numArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  private static specialChars = ['!', '@', '#', '$', '%', '^', '&', '*'];
 
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
+  /**
+   * Shuffle the inputarray
+   */
+  private static shuffle(array: any) {
+    let currentIndex = array.length;
+    let temporaryValue;
+    let randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
-    /**
-     * GenerateSimplePassword
-     */
-    public static GenerateSimplePassword(): string {
-        let charLength = 6,
-            numericLength = 2;
-        let charset = "abcdefghijklmnopqrstuvwxyz",
-            retVal = "",
-            numericset = "0123456789",
-            specialCharSet = "!@#$%^&*()_+{}[]:<>?/";
-        for (let i = 0, n = charset.length; i < charLength; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
-        }
-        for (let i = 0, n = numericset.length; i < numericLength; ++i) {
-            retVal += numericset.charAt(Math.floor(Math.random() * n));
-        }
-        let inpArray = retVal.split("")
-        let retValArray = this.shuffle(inpArray)
-        return retValArray;
-        //TODO: return shuffled string
+    return array;
+  }
+  /*
+   **Passwordoperations check
+   */
+  private static getPasswordStringObject(value: string): object {
+    const strings: any = [];
+    const nums: any = [];
+    const specialCharacters: any = [];
+    const inpArray = value.split('');
+    inpArray.map(val => {
+      if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
+        strings.push(val);
+      } else if (this.numArray.indexOf(val) > -1) {
+        nums.push(val);
+      } else if (this.specialChars.indexOf(val) > -1) {
+        specialCharacters.push(val);
+      }
+    });
+    return {
+      alphabets: strings,
+      numerics: nums,
+      specialCharacter: specialCharacters,
+    };
+  }
+  
+  private static isValid(val: string, options: any) {
+    const passwordDevidedArray: any = this.getPasswordStringObject(val);
+    const strings: [] = passwordDevidedArray.alphabets;
+    const nums: [] = passwordDevidedArray.numerics;
+    const specialCharacters: [] = passwordDevidedArray.specialCharacter;
+    const stringCheck = this.isValidLength(strings.length, options.minAlphabets, options.maxAlphabets);
+    const numsCheck = this.isValidLength(nums.length, options.minNumerics, options.maxNumberics);
+    const specialCharCheck = this.isValidLength(
+      specialCharacters.length,
+      options.minSpecialChars,
+      options.maxSpecialChars,
+    );
+    if (stringCheck && numsCheck && specialCharCheck) {
+      return true;
+    } else {
+      return false;
     }
-    /**
-     * GenerateGoodPassword
-     */
-    public static GenerateGoodPassword(): string {
-        let charLength = 8,
-            numericLength = 4;
-        let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            retVal = "",
-            numericset = "0123456789",
-            specialCharSet = "!@#$%^&*()_+{}[]:<>?/";
-        for (let i = 0, n = charset.length; i < charLength; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
-        }
-        for (let i = 0, n = numericset.length; i < numericLength; ++i) {
-            retVal += numericset.charAt(Math.floor(Math.random() * n));
-        }
-        let inpArray = retVal.split("")
-        let retValArray = this.shuffle(inpArray)
-        return retValArray;
-    }
-
-    /**
-     * GenerateStrongePassword
-     */
-    public static GenerateStrongPassword(): string {
-        let charLength = 8,
-            numericLength = 4,
-            specialCharLength = 4;
-        let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            numericset = "0123456789",
-            specialCharSet = "!@#$%^&*()_+{}[]:<>?/",
-            retVal = "";
-        for (let i = 0, n = charset.length; i < charLength; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
-        }
-        for (let i = 0, n = numericset.length; i < numericLength; ++i) {
-            retVal += numericset.charAt(Math.floor(Math.random() * n));
-        }
-        for (let i = 0, n = specialCharSet.length; i < specialCharLength; ++i) {
-            retVal += specialCharSet.charAt(Math.floor(Math.random() * n));
-        }
-        let inpArray = retVal.split("")
-        let retValArray = this.shuffle(inpArray)
-        return retValArray;
-    }
-
-    /**
-     * IsPasswordWeek
-     */
-    public static IsPasswordWeek(value: string): boolean {
-        let strings: any = []
-        let nums: any = []
-        let specialCharacters: any = []
-        let inpArray = value.split("")
-        inpArray.map(val => {
-            if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
-                strings.push(val)
-            } else if (this.numArray.indexOf(val) > -1) {
-                nums.push(val)
-            }
-            else if (this.specialChars.indexOf(val) > -1) {
-                specialCharacters.push(val)
-            }
-        })
-
-        if ((strings.length >= this.weekOptions.minAlphabets && strings.length <= this.weekOptions.maxAlphabets) && (nums.length >= this.weekOptions.minNumerics && nums.length <= this.weekOptions.maxNumberics) && (specialCharacters.length >= this.weekOptions.minSpecialChars && specialCharacters.length <= this.weekOptions.maxSpecialChars))
-            return true;
-        else
-            return false;
-    }
-    /**
-     * IsPasswordGood
-     */
-    public static IsPasswordGood(value: string): boolean {
-        let strings: any = []
-        let nums: any = []
-        let specialCharacters: any = []
-        let inpArray = value.split("")
-        inpArray.map(val => {
-            if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
-                strings.push(val)
-            } else if (this.numArray.indexOf(val) > -1) {
-                nums.push(val)
-            }
-            else if (this.specialChars.indexOf(val) > -1) {
-                specialCharacters.push(val)
-            }
-        })
-
-        if ((strings.length >= this.mediumOptions.minAlphabets && strings.length <= this.mediumOptions.maxAlphabets) && (nums.length >= this.mediumOptions.minNumerics && nums.length <= this.mediumOptions.maxNumberics) && (specialCharacters.length >= this.mediumOptions.minSpecialChars && specialCharacters.length <= this.mediumOptions.maxSpecialChars))
-            return true;
-        else
-            return false
-    }
-    /**
-     * IsPasswordStrong
-     */
-    public static IsPasswordStrong(value: string): boolean {
-        let strings: any = []
-        let nums: any = []
-        let specialCharacters: any = []
-        let inpArray = value.split("")
-        inpArray.map(val => {
-            if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
-                strings.push(val)
-            } else if (this.numArray.indexOf(val) > -1) {
-                nums.push(val)
-            }
-            else if (this.specialChars.indexOf(val) > -1) {
-                specialCharacters.push(val)
-            }
-        })
-        if ((strings.length >= this.strongOptions.minAlphabets && strings.length <= this.strongOptions.maxAlphabets) && (nums.length >= this.strongOptions.minNumerics && nums.length <= this.strongOptions.maxNumberics) && (specialCharacters.length >= this.strongOptions.minSpecialChars && specialCharacters.length <= this.strongOptions.maxSpecialChars))
-            return true;
-        else
-            return false;
-    }
-    /** 
-     * checkPasswordStrength
-    */
-    public static CheckPasswordStrength(value: string, options?: object): PasswordStrength {
-        let defaultOptions = this.passwordDefaultOptions;
-        //let _options: any = options ? options : this.passwordDefaultOptions
-        (<any>Object).assign(defaultOptions, options)
-        const passwordDevidedArray: any = this.getPasswordStringObject(value)
-        let strings: [] = passwordDevidedArray.strings
-        let nums: [] = passwordDevidedArray.nums
-        let specialCharacters: [] = passwordDevidedArray.specialCharacters
-        // let inpArray = value.split("")
-        // inpArray.map(val => {
-        //     if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
-        //         strings.push(val)
-        //     } else if (this.numArray.indexOf(val) > -1) {
-        //         nums.push(val)
-        //     }
-        //     else if (this.specialChars.indexOf(val) > -1) {
-        //         specialCharacters.push(val)
-        //     }
-        // })
-        //  if (options == null) {
-        let _weakoptions = defaultOptions.weekOptions;
-        if ((this.isValidMinLength(strings.length, _weakoptions.minAlphabets) && 
-        this.isValidMaxLength(strings.length, _weakoptions.maxAlphabets)) && 
-        (this.isValidMinLength(nums.length,_weakoptions.minNumerics)&& 
-        (this.isValidMaxLength(nums.length, _weakoptions.maxNumberics))))
-        {
-            return PasswordStrength.Week;
-        }
-        else if ((this.isValidMinLength(strings.length, _weakoptions.minAlphabets) && 
-        this.isValidMaxLength(strings.length, _weakoptions.maxAlphabets)) && 
-        (this.isValidMinLength(nums.length,_weakoptions.minNumerics)&& 
-        (this.isValidMaxLength(nums.length, _weakoptions.maxNumberics))) && 
-        (this.isValidMinLength(specialCharacters.length,_weakoptions.minSpecialChars)&& 
-        this.isValidMaxLength(specialCharacters.length,_weakoptions.maxSpecialChars)))
-        {
-            return PasswordStrength.Good;
-        }
-        else if ((this.isValidMinLength(strings.length, _weakoptions.minAlphabets) && 
-        this.isValidMaxLength(strings.length, _weakoptions.maxAlphabets)) && 
-        (this.isValidMinLength(nums.length,_weakoptions.minNumerics)&& 
-        (this.isValidMaxLength(nums.length, _weakoptions.maxNumberics))) && 
-        (this.isValidMinLength(specialCharacters.length,_weakoptions.minSpecialChars)&& 
-        this.isValidMaxLength(specialCharacters.length,_weakoptions.maxSpecialChars)))
-        {
-            return PasswordStrength.Strong;
-        }
-        else
-        return '';
-         
-    }
-
-    private static isValidMinLength(sourceLength : number, targetLength : number){
-        return sourceLength >= targetLength
-    }
-
-    private static isValidMaxLength(sourceLength : number, targetLength : number){
-        return sourceLength <= targetLength
-    }
-
-    private static getPasswordStringObject(value: string): object {
-        let strings: any = []
-        let nums: any = []
-        let specialCharacters: any = []
-        let inpArray = value.split("")
-        inpArray.map(val => {
-            if (this.stringArray.indexOf(val.toLowerCase()) > -1) {
-                strings.push(val)
-            } else if (this.numArray.indexOf(val) > -1) {
-                nums.push(val)
-            }
-            else if (this.specialChars.indexOf(val) > -1) {
-                specialCharacters.push(val)
-            }
-        })
-        return {
-            string: strings,
-            nums: nums,
-            specialCharacters: specialCharacters
-        }
-    }
-
+  }
+  private static isValidLength(val: number, minLength: number, maxLength: number) {
+    return val >= minLength && val <= maxLength;
+  }
 }
