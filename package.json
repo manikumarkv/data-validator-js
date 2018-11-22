@@ -1,11 +1,11 @@
 {
   "name": "data-validator-js",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "Validation Methods for all types of Data",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest --config jestconßfig.json",
+    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",

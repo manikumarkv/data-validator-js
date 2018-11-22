@@ -174,13 +174,13 @@ isValid = StringUtilities.IsValidAlphaNumericWithSpecialChars(null) // false
 
 ### IsNullOrUndefined(obj: object| null| undefined): boolean
 
-```Typescript
+```javascript
 import { ScriptUtilities } from "data-validator-js";
 //IsNullOrUndefined checks the obj is null or undefined 
-let IsValid = ScriptUtilities.IsNullOrUndefined(null)//true
-IsValid = ScriptUtilities.IsNullOrUndefined(undefined)//true
-IsValid = ScriptUtilities.IsNullOrUndefined({})//false
-IsValid = ScriptUtilities.IsNullOrUndefined({sdsgf:[]})//false
+let IsValid = ScriptUtilities.IsNullOrUndefined(null) //true
+IsValid = ScriptUtilities.IsNullOrUndefined(undefined) //true
+IsValid = ScriptUtilities.IsNullOrUndefined({}) //false
+IsValid = ScriptUtilities.IsNullOrUndefined({sdsgf:[]}) //false
 
 ```
 
@@ -188,23 +188,23 @@ IsValid = ScriptUtilities.IsNullOrUndefined({sdsgf:[]})//false
 
 ### IsMacMachine(): boolean
 
-```Typescript
+```javascript
 
 import { ScriptUtilities } from "data-validator-js";
 //IsMacMachine checks the machine, returns true if its a mac machine
-let IsValid = ScriptUtilities.IsMacMachine()// if its a mac machine returns true.
+let IsValid = ScriptUtilities.IsMacMachine() // if its a mac machine returns true.
 
 ```
 
 ## getNumericValue
 ### getNumericValue(value: string, radix : number = 10): number| null
 
-```Typescript
+```javascript
 
 import { ScriptUtilities } from "data-validator-js";
 //getNumericValue checks and returns a numeric value
-let IsValid = ScriptUtilities.getNumericValue('vish')//NaN
-IsValid = ScriptUtilities.getNumericValue('123')//123
+let IsValid = ScriptUtilities.getNumericValue('vish') //NaN
+IsValid = ScriptUtilities.getNumericValue('123') //123
 
 ```
 
@@ -212,7 +212,7 @@ IsValid = ScriptUtilities.getNumericValue('123')//123
 
 ### ConvertToCapitals(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 // ConvertToCapitals Converts the given value to UpperCase letters
@@ -223,7 +223,7 @@ let Converter = ConverterUtils.ConvertToCapitals('test') // TEST
 
 ### ConvertToLowerCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 // ConvertToLowerCase Converts the given value to LowerCase letters
@@ -235,11 +235,11 @@ let Converter = ConverterUtils.ConvertToLowerCase('TEST')// test
 
 ### ConvertToCamelCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 // ConvertToCamelCase Converts the given value to CamelCase
-let Converter = ConverterUtils.ConvertToCamelCase('test case')// TestCase
+let Converter = ConverterUtils.ConvertToCamelCase('test case') // TestCase
 
 ```
 
@@ -247,26 +247,26 @@ let Converter = ConverterUtils.ConvertToCamelCase('test case')// TestCase
 
 ### ConvertToString(value: number | string | object | null | undefined): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 // ConvertToString Converts the given value to String
-let Converter = ConverterUtils.ConvertToString(123)//123
-Converter = ConverterUtils.ConvertToString('test')//test
-Converter = ConverterUtils.ConvertToString(null)//null
-Converter = ConverterUtils.ConvertToString(undefined)//undefined
+let Converter = ConverterUtils.ConvertToString(123) //123
+Converter = ConverterUtils.ConvertToString('test') //test
+Converter = ConverterUtils.ConvertToString(null) //null
+Converter = ConverterUtils.ConvertToString(undefined) //undefined
 
 ```
 ## ConvertToNumber
 
 ### ConvertToNumber(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 // ConvertToNumber checks the given value is a number or not
-let Converter = Converter.ConvertToNumber("123")//123
-Converter = Converter.ConvertToNumber("hello")//NaN
+let Converter = Converter.ConvertToNumber("123") //123
+Converter = Converter.ConvertToNumber("hello") //NaN
 
 ```
 
@@ -274,7 +274,7 @@ Converter = Converter.ConvertToNumber("hello")//NaN
 
 ### ConvertToTitleCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 //ConvertToTitleCase Converts the given value into TitleCase
@@ -286,7 +286,7 @@ let Converter = Converter.ConvertToTitleCase('hai hELlo') //Hai Hello
 
 ### ConvertToLowerCamelCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 // ConvertToLowerCamelCase Converts the given value into LowerCamelCase
@@ -298,7 +298,7 @@ let Converter = Converter.ConvertToLowerCamelCase('Hai HeLlo')// haihello
 
 ### ConvertToSnakeCase(value: string): string
 
-```TypeScript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 //ConvertToSnakeCase Converts the given value into SnakeCase
@@ -310,7 +310,7 @@ let Converter = Converter.ConvertToSnakeCase('hello how are you')//hello_how_are
 
 ### ConvertToRandomCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 //ConvertToRandomCase Converts the given value into a random value
@@ -321,7 +321,7 @@ let Converter = Converter.ConvertToRandomCase('hello')// changes randomly
 
 ### ConvertToToggleCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 //ConvertToToggleCase Converts the given value to ToggleCase
@@ -332,7 +332,7 @@ let Converter = Converter.ConvertToToggleCase('tEsT')// TeSt
 
 ### ConvertToSentenceCase(value: string): string
 
-```Typescript
+```javascript
 
 import { ConverterUtils } from "data-validator-js";
 //ConvertToSentenceCase converts the given value to SentenceCase
