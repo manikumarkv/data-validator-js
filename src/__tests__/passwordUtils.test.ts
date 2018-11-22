@@ -78,13 +78,98 @@ test('PasswordUtils ==> CheckpasswordStrength==> case 3', () => {
     expect(testedMethodResult).toBe(myExpectations);
 });
 
-test('PasswordUtils ==> CheckpasswordStregth==> case 4', () => {
+test('PasswordUtils ==> CheckpasswordStrength==> case 4', () => {
     let Options: any = {
-        weekOptions: {},
-        mediumOptions:{},
-        strongOptions:{}
+        weekOptions: {
+            minAlphabets: 4,
+            minNumerics: 3,
+            minSpecialChars: 0,
+            maxAlphabets: 8,
+            maxNumberics: 5,
+            maxSpecialChars: 0
+        },
+        mediumOptions: {
+            minAlphabets: 8,
+            minNumerics: 4,
+            minSpecialChars: 2,
+            maxAlphabets: 15,
+            maxNumberics: 6,
+            maxSpecialChars: 4
+        },
+        strongOptions: {
+            minAlphabets: 15,
+            minNumerics: 6,
+            minSpecialChars: 4,
+            maxAlphabets: 20,
+            maxNumberics: 8,
+            maxSpecialChars: 4
+        }
     }
-    let testedMethodResult = passwordUtils.CheckPasswordStrength('asdfgh12',Options)
+    let testedMethodResult = passwordUtils.CheckPasswordStrength('asdf123',Options)
     let myExpectations = "week"
+    expect(testedMethodResult).toBe(myExpectations);
+});
+
+test('PasswordUtils ==> CheckpasswordStrength==> case 5', () => {
+    let Options: any = {
+        weekOptions: {
+            minAlphabets: 4,
+            minNumerics: 3,
+            minSpecialChars: 0,
+            maxAlphabets: 8,
+            maxNumberics: 5,
+            maxSpecialChars: 0
+        },
+        mediumOptions: {
+            minAlphabets: 8,
+            minNumerics: 4,
+            minSpecialChars: 2,
+            maxAlphabets: 15,
+            maxNumberics: 6,
+            maxSpecialChars: 4
+        },
+        strongOptions: {
+            minAlphabets: 15,
+            minNumerics: 6,
+            minSpecialChars: 4,
+            maxAlphabets: 20,
+            maxNumberics: 8,
+            maxSpecialChars: 4
+        }
+    }
+    let testedMethodResult = passwordUtils.CheckPasswordStrength('asdfghjkf1234@#',Options)
+    let myExpectations = "good"
+    expect(testedMethodResult).toBe(myExpectations);
+});
+
+test('PasswordUtils ==> CheckpasswordStrength==> case 6', () => {
+    let Options: any = {
+        weekOptions: {
+            minAlphabets: 4,
+            minNumerics: 3,
+            minSpecialChars: 0,
+            maxAlphabets: 8,
+            maxNumberics: 5,
+            maxSpecialChars: 0
+        },
+        mediumOptions: {
+            minAlphabets: 8,
+            minNumerics: 4,
+            minSpecialChars: 2,
+            maxAlphabets: 15,
+            maxNumberics: 6,
+            maxSpecialChars: 4
+        },
+        strongOptions: {
+            minAlphabets: 15,
+            minNumerics: 6,
+            minSpecialChars: 4,
+            maxAlphabets: 20,
+            maxNumberics: 8,
+            maxSpecialChars: 4
+        }
+    }
+    let testedMethodResult = passwordUtils.CheckPasswordStrength('asdfghjklqwertyf123456!@#$',Options)
+    let myExpectations = "strong"
     expect(testedMethodResult).toBe(myExpectations);
 });
