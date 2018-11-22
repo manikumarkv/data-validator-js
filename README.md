@@ -49,7 +49,7 @@ npm install --save-dev data-validator-js
 
 ## Setup
 
-``` Typescript
+``` javascript
 
 import { StringUtilities } from "data-validator-js";
 
@@ -60,7 +60,7 @@ import { StringUtilities } from "data-validator-js";
 
 ### IsNullOrEmpty(value: string | null | undefined): boolean
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 
@@ -76,7 +76,7 @@ isValidString = StringUtilities.IsNullOrEmpty(null) // true
 
 ### IsValidEmail(value: string | null | undefined): boolean 
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
@@ -92,7 +92,7 @@ isValidEmail = StringUtilities.IsValidEmail('xyz@xyx.abc') // true
 
 ### IsValidString(value: string | null | undefined): boolean
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
@@ -108,7 +108,7 @@ isValid = StringUtilities.IsValidString('xyz@xyx.abc') // false
 
 ### IsValidPhoneNumber(value: string): boolean
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
@@ -124,7 +124,7 @@ isValidPhoneNumber = StringUtilities.IsValidPhoneNumber(null) // false
 
 ### IsValidNumber(value: string): boolean
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
@@ -141,7 +141,7 @@ isValid = StringUtilities.IsValidNumber(null) // false
 
 ### IsValidAlphaNumeric(value : string): boolean
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
@@ -157,7 +157,7 @@ isValid = StringUtilities.IsValidAlphaNumeric(null) // false
 
 ### IsValidAlphaNumericWithSpecialChars(value: string): boolean
 
-```Typescript
+```javascript
 
 import { StringUtilities } from "data-validator-js";
 // isValidEmail Validates the given value is valid email format or not 
